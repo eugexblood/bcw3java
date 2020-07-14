@@ -14,6 +14,10 @@ public class Paper {
     public int getMaxSymbols() {
         return maxSymbols;
     }
+    
+    public int getSymbols() {
+        return this.content.length();
+    }
 
     public void addContent(String message) throws OutOfSpaceException {
         int total = content.length() + message.length();
@@ -23,11 +27,16 @@ public class Paper {
         }
         if ( total > maxSymbols ) {
             content.append(message.substring(0, maxSymbols-content.length()));
-            return;
+            throw new OutOfSpaceException("You filled last space on this paper. Message isn't finished.");
         }
         content.append(message);
     }
+    
     public void show() {
-        System.out.println(content);
+        if ( this.content.length() == 0 ) {
+            System.out.println("This paper is empty.");
+        } else {
+            System.out.println("Content of this paper: " + content + "\n**********");
+        }
     }
 }

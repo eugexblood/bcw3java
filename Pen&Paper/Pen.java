@@ -12,25 +12,49 @@ public class Pen {
     }
 
     public int getInkAmount() {
-        return inkAmount;
+        return this.inkAmount;
     }
     public int getInkCapacity() {
-        return inkCapacity;
+        return this.inkCapacity;
     }
 
     public void write(Paper paper, String message) throws OutOfInkException, OutOfSpaceException {
+        int space, messageSize;
+        
         if ( inkAmount == 0 ) {
             throw new OutOfInkException();
         }
-        if ( message.length() > inkAmount ) {
-            paper.addContent(message.substring(0, inkAmount));
-            inkAmount = 0;
+        
+        space = paper.getMaxSymbols() - paper.getSymbols();
+        messageSize = message.length();
+        
+        if ( this.inkAmount > space && messageSize > space ) {
+            this.inkAmount -= space;
+            paper.addContent(message);
             return;
         }
+        if ( this.inkAmount < space && messageSize > this.inkAmount ) {
+            paper.addContent(message.substring(0, this.inkAmount));
+            this.inkAmount = 0;
+            
+            throw new OutOfInkException("You spent last ink of this pen. Message isn't finished.");
+        }
+        if ( this.inkAmount == space && messageSize > this.inkAmount ) {
+            try {
+                paper.addContent(message);
+            } catch (OutOfSpaceException e) {
+                System.out.println(e);
+            }
+            this.inkAmount = 0;
+            throw new OutOfInkException("You spent last ink of this pen. Message isn't finished.");
+        }
+        
         paper.addContent(message);
-        inkAmount -= message.length();
+        this.inkAmount -= messageSize;
     }
     public void refill() {
-        inkAmount = inkCapacity;
+        this.inkAmount = this.inkCapacity;
+        System.out.println("Pen refilled");
     }
 }
+

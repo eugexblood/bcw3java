@@ -9,6 +9,10 @@ public class OutOfFuelException extends Exception {
         this.fuelNeeded = fuelNeeded;
     }
     
+    public OutOfFuelException() {
+        this(0.0, 0.0, 0.0);
+    }
+    
     public String toString() {
         return "OutOfFuelException: Not enough fuel to drive " + String.format("%.2f", this.distance) + " km. This car has only "
         + String.format("%.2f", this.fuelAmount) + " litres of " + String.format("%.2f", this.fuelNeeded) + " needed.";

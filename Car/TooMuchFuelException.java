@@ -8,6 +8,10 @@ public class TooMuchFuelException extends Exception {
         // System.out.println("TooMuchFuelException: You tried to refill too much fuel. Only " + reducedRefill + " l refilled.");
     }
     
+    public TooMuchFuelException() {
+        this(0.0);
+    }
+    
     public String toString() {
         return "TooMuchFuelException: You tried to refill too much fuel. Only " + this.reducedRefill + " l refilled.";
     }
