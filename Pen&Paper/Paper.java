@@ -39,4 +39,12 @@ public class Paper {
             System.out.println("Content of this paper: " + content + "\n**********");
         }
     }
+    
+    public String toString() {
+        if ( this.content.length() == 0 ) {
+            return "This paper is empty.";
+        } else {
+            return "Content of this paper: " + content + "\n**********";
+        }
+    }
 }

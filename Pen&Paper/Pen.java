@@ -21,7 +21,7 @@ public class Pen {
     public void write(Paper paper, String message) throws OutOfInkException, OutOfSpaceException {
         int space, messageSize;
         
-        if ( inkAmount == 0 ) {
+        if ( this.inkAmount == 0 ) {
             throw new OutOfInkException();
         }
         
@@ -36,7 +36,6 @@ public class Pen {
         if ( this.inkAmount < space && messageSize > this.inkAmount ) {
             paper.addContent(message.substring(0, this.inkAmount));
             this.inkAmount = 0;
-            
             throw new OutOfInkException("You spent last ink of this pen. Message isn't finished.");
         }
         if ( this.inkAmount == space && messageSize > this.inkAmount ) {
