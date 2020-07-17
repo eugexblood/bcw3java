@@ -5,12 +5,12 @@ public class List implements Cloneable {
     private int capacity;
     private ArrayList<Integer> array;
     
-    public List() {
-        this.array = new ArrayList<Integer>(100);
-    }
-    
     public List(int capacity) throws IllegalArgumentException {
         this.array = new ArrayList<Integer>(capacity);
+    }
+    
+    public List() {
+        this(100);
     }
     
     public int size() {

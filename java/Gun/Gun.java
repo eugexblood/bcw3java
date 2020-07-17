@@ -5,14 +5,6 @@ public class Gun implements Cloneable {
     private String model;
     private int totalShots;
     
-    public Gun() {
-        this.amount = 0;
-        this.capacity = 8;
-        this.isReady = false;
-        this.model = "Beretta";
-        this.totalShots = 0;
-    }
-    
     public Gun(String model, int capacity) {
         this.amount = 0;
         if ( capacity < 1 ) {
@@ -23,6 +15,10 @@ public class Gun implements Cloneable {
         this.isReady = false;
         this.model = model;
         this.totalShots = 0;
+    }
+    
+    public Gun() {
+        this("Beretta", 8);
     }
     
     public Gun clone() throws CloneNotSupportedException {

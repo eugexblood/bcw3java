@@ -3,17 +3,15 @@ public class Date implements Cloneable{
     private int month;
     private int year;
     
-    public Date() {
-        this.day = 1;
-        this.month = 1;
-        this.year = 1970;
-    }
-    
     public Date(int day, int month, int year) throws InvalidDateException {
         this.day = day;
         this.month = month;
         this.year = year;
         this.validate(day, month, year);
+    }
+    
+    public Date() throws InvalidDateException {
+        this(1, 1, 1970);
     }
     
     private void validate(int day, int month, int year) throws InvalidDateException {
